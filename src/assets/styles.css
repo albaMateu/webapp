@@ -1,0 +1,39 @@
+#content{
+  margin-top: 30px;
+  border-radius: 2px;
+  background: white;
+  box-shadow: 0px 2px 5px #ccc;
+  padding: 0px;
+  overflow: hidden;
+}
+
+#header{
+  background-color: #E03137;
+  color: white;
+  margin: 0px;
+  height: 90px;
+  line-height: 90px;
+}
+
+#header h1{
+  line-height: 90px;
+  display: block;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+#nav {
+  padding: 0px;
+  margin: 0px;
+  background: #eee;
+}
+
+#nav ul{
+  margin: 0px;
+  list-style: none;
+}
+
+#nav ul li{
+  float: left;
+  margin-right: 20px;
+}
