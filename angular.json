@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "curso-angular4-webapp"
+    }
+  },
+  "defaultProject": "curso-angular4-webapp",
+  "cli": {
+    "analytics": "c75873d0-645d-4c85-8dc3-2798d599c639"
+  }
 }
