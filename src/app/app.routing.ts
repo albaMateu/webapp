@@ -3,12 +3,13 @@ import { Routes, RouterModule } from '@angular/router';
 
 //componentes
 import { HomeComponent } from "./components/home.component";
+import { ErrorComponent } from "./components/error.component";
 
 
 const appRoutes: Routes = [
    {path: '', component: HomeComponent},
    {path: 'home', component: HomeComponent},
-   {path: '**', component: HomeComponent}
+   {path: '**', component: ErrorComponent}
 ];
 
 export const appRoutingProviders: any[] = [];
