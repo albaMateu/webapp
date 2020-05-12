@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpHeaders, RequestOptions } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 
 import {map} from 'rxjs/operators';
 import { Observable } from 'rxjs/Observable';
@@ -17,8 +17,13 @@ export class ProductoService{
     this.url=GLOBAL.url;
   }
 
-  getProductos(){
-    return "Texto desde el servicio";
+  //Es importante indicarle al método que devolverá un Observable y el tipo
+  //de dato que devolverá el observable al hacer el subscribe, si el api
+  //rest devuelve un objeto que no corresponde 100% con los modelos que
+  //tengas en Angular, es mejor indicarle el tipo any.
+  getProductos(): Observable<any>{
+    //agarra la URL de la API que tenim en la variable Global i concatena el metodo que volem de la api
+    return this._http.get(this.url+'productos');
   }
 
 }

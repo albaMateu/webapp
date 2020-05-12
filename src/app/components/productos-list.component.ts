@@ -1,3 +1,4 @@
+import { Producto } from './../models/producto';
 import { ProductoService } from './../services/producto.service';
 
 import { Component } from '@angular/core';
@@ -10,6 +11,7 @@ import { Router, ActivatedRoute, Params } from "@angular/router";
 })
 export class ProductosListComponent{
   public titulo:string;
+  public productos: Producto[];
 
   constructor(
     private _route:ActivatedRoute,
@@ -22,6 +24,19 @@ export class ProductosListComponent{
   ngOnInit() {
     console.log("productos-list.component.ts cargado");
 
-    alert(this._productoService.getProductos());
+    this._productoService.getProductos().subscribe(
+      result => {
+        if(result.code != 200){
+          console.log(result)
+        }else{
+          //data es on esta l'array de objectes producto
+          this.productos=result.data;
+        }
+      },
+      error => {
+        console.log(<any>error);
+      }
+
+    );
   }
 }
