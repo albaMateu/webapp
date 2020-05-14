@@ -11,13 +11,19 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 })
 export class ProductoAddComponent{
   public titulo:string;
-
+  public producto : Producto;
 
   constructor(){
     this.titulo="Crear un nuevo producto";
+    //producte que s'utilitza per a anar modificant-lo en el formulari
+    this.producto=new Producto(0,'','',0,'');
   }
 
   ngOnInit() {
     console.log("producto-add.component.ts cargado");
+  }
+
+  onSubmit(){
+    console.log(this.producto);
   }
 }
