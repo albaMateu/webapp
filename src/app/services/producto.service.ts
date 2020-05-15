@@ -26,5 +26,17 @@ export class ProductoService{
     return this._http.get(this.url+'productos');
   }
 
+  addProducto(producto:Producto): Observable<any>{
+    //convertix l'objecte que reb del form en json
+    let json = JSON.stringify(producto);
+    //parametre on posarem el json per a enviar-lo al servidor en la petició ajax
+    let params ='json='+json;
+    //configuració de la capçalera per a una sol·licitud HTTP. Depen del backend
+    let headers = new HttpHeaders({'Content-Type':'application/x-www-form-urlencoded'});
+
+    //petició al servidor
+    return this._http.post(this.url+'producto', params, {headers:headers});
+  }
+
 }
 

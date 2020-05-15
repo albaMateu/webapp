@@ -14,7 +14,7 @@
     <span *ngIf="!descripcion.valid && descripcion.touched" class="label label-danger">La descripción es obligatoria</span>
   </label>
 
-  <textarea #descripcion="ngModel" name="descripcion" [ngModel]="producto.descripcion" class="form-control" required ></textarea>
+  <textarea #descripcion="ngModel" name="descripcion" [(ngModel)]="producto.descripcion" class="form-control" required ></textarea>
 
   <label>
     Precio
