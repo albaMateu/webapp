@@ -38,5 +38,49 @@ export class ProductoService{
     return this._http.post(this.url+'producto', params, {headers:headers});
   }
 
+  //subir fichero
+  makeFileRequest(url:string, params: Array <string>, files: Array <File>){
+    //fer que no siga asíncron
+    return new Promise((resolve, reject)=>{
+      //crea un objecte buit com si fora d'un formulari que és el que enviarem
+      var formData: any = new FormData();
+      //Para hacer la peticion ajax
+      var xhr= new XMLHttpRequest();
+
+      //recorrer todos los ficheros que contiene files para meterlos en formData
+      for (let i = 0; i < files.length; i++) {
+        //(nom del camp a rebre del backend, fitxer, nom del fitxer)
+        formData.append('uploads[]',files[i],files[i].name);
+      }
+      //Cuando la petición ajax (xhr) pase a estar preparada (onreadystatechange)
+      //onreadystatechange se ejecutará cuando la solicitud reciba una respuesta por ser async.(respuesta del send )
+      xhr.onreadystatechange=function(){
+        //Manté l'estat de XMLHttpRequest.
+        //0: sol·licitud no inicialitzada
+        //1: establerta la connexió amb el servidor
+        //2: sol·licitud rebuda
+        //3: sol·licitud de tramitació
+        //4: finalitza la sol·licitud i la resposta està preparada
+        if(xhr.readyState == 4){
+          //si ha sido exitosa
+          //status: Retorna el número d'estat d'una sol·licitud 200: "D'acord" 403 Prohibit" 404 No troba
+          if(xhr.status == 200){
+            //re recoge el resultado de la petición y lo pasa a JSON
+            resolve(JSON.parse(xhr.response));
+          }else{
+            //se recoge el error de la petición
+            reject(xhr.response);
+          }
+        }
+      };
+      //(metodo GET o POST, url al backend, async true o false, usuario, pwd)
+      //siempre async en true
+      //Especifica el tipus de sol·licitud
+      xhr.open("POST",url,true);
+      //se envia
+      xhr.send(formData);
+    });
+  }
+
 }
 
