@@ -1,3 +1,4 @@
+import { ProductoDetailComponent } from './components/producto-detail.component';
 import { ProductoAddComponent } from './components/producto-add.component';
 import { HomeComponent } from "./components/home.component";
 import { ErrorComponent } from "./components/error.component";
@@ -13,6 +14,7 @@ const appRoutes: Routes = [
    {path: 'home', component: HomeComponent},
    {path: 'productos', component: ProductosListComponent},
    {path: 'crear-producto', component: ProductoAddComponent},
+   {path: 'producto/:id', component: ProductoDetailComponent},
    {path: '**', component: ErrorComponent}
 ];
 
