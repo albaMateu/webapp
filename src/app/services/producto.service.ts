@@ -40,7 +40,8 @@ export class ProductoService{
 
   //subir fichero
   makeFileRequest(url:string, params: Array <string>, files: Array <File>){
-    //fer que no siga asíncron
+    console.log("files makefilerequest",files);
+    //fer que no siga async
     return new Promise((resolve, reject)=>{
       //crea un objecte buit com si fora d'un formulari que és el que enviarem
       var formData: any = new FormData();
@@ -49,7 +50,8 @@ export class ProductoService{
 
       //recorrer todos los ficheros que contiene files para meterlos en formData
       for (let i = 0; i < files.length; i++) {
-        //(nom del camp a rebre del backend, fitxer, nom del fitxer)
+        //(nom del camp a rebre del backend el _FILES del backend, fitxer, nom del fitxer)
+        console.log('uploads[]',files[i],files[i].name);
         formData.append('uploads[]',files[i],files[i].name);
       }
       //Cuando la petición ajax (xhr) pase a estar preparada (onreadystatechange)
@@ -78,6 +80,7 @@ export class ProductoService{
       //Especifica el tipus de sol·licitud
       xhr.open("POST",url,true);
       //se envia
+      console.log("form data prod-service makefilerequest",formData);
       xhr.send(formData);
     });
   }
