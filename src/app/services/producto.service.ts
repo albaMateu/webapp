@@ -47,8 +47,14 @@ export class ProductoService{
     let json =JSON.stringify(producto);
     let params = "json="+json;
     let headers = new HttpHeaders({'Content-Type':'application/x-www-form-urlencoded'});
-
+    //url del metodo de la api
     return this._http.post(this.url+'update-producto/'+id, params, {headers:headers});
+
+  }
+
+  deleteProducto(id): Observable<any>{
+    //url del metodo de la api
+    return this._http.get(this.url+'delete-producto/'+id);
 
   }
 

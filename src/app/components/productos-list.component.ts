@@ -12,6 +12,8 @@ import { Router, ActivatedRoute, Params } from "@angular/router";
 export class ProductosListComponent{
   public titulo:string;
   public productos: Producto[];
+  //indica si se ha confirmado o cancelado el borrar producto.
+  public confirmado;
 
   constructor(
     private _route:ActivatedRoute,
@@ -19,11 +21,16 @@ export class ProductosListComponent{
     private _productoService: ProductoService
   ){
     this.titulo= "Listado de productos";
+    this.confirmado=null;
   }
 
   ngOnInit() {
     console.log("productos-list.component.ts cargado");
+    this.getProductos();
+  }
 
+  //listado de productos
+  getProductos(){
     this._productoService.getProductos().subscribe(
       result => {
         if(result.code != 200){
@@ -38,5 +45,36 @@ export class ProductosListComponent{
       }
 
     );
+  }
+
+  borrarConfirm(id){
+    this.confirmado=id;
+
+  }
+  cancelarConfirm(){
+    this.confirmado=null;
+  }
+
+  //elimina un producto
+  onDeleteProducto(id){
+
+    if (this.confirmado) {
+      //elimina el producte
+      this._productoService.deleteProducto(id).subscribe(
+        response =>{
+          if (response.code == 200) {
+            //si s'elimina bé, em mostra els productes
+            this.getProductos();
+          }else{
+            alert("Error al borrar el producto.");
+          }
+
+        },
+        error =>{
+          console.log(<any>error);
+        }
+      );
+    }
+
   }
 }
