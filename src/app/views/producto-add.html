@@ -24,6 +24,9 @@
   <input type="text" #precio="ngModel" name="precio" [(ngModel)]="producto.precio" class="form-control" required pattern="[0-9]+" />
 
   <label>Imagen</label>
+  <div *ngIf="is_edit" >
+    <img src="http://localhost/curso-angular4-backend/uploads/{{producto.imagen}}" width="60px" alt="{{producto.nombre}}"/>
+  </div>
   <input type="file" class="form-control" id="imagen" (change)="fileChangeEvent($event)" />
   <br>
 

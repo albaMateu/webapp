@@ -17,6 +17,7 @@ export class ProductoAddComponent{
 
   public filesToUpload;
   public resultUpload;
+  public is_edit; //perque sino dona error en la vista, es necessita per a editar
 
   constructor(
     private _productoService: ProductoService,
@@ -26,6 +27,7 @@ export class ProductoAddComponent{
     this.titulo="Crear un nuevo producto";
     //producte que s'utilitza per a anar modificant-lo en el formulari
     this.producto=new Producto(0,'','',0,'');
+    this.is_edit = false;
   }
 
   ngOnInit() {
@@ -38,7 +40,7 @@ export class ProductoAddComponent{
     console.log("prod-add.ts filestoupload",this.filesToUpload[0].name);
 
     //si filestoupload es 1 es que existeix fitxer per a pujar
-    if(this.filesToUpload.length <= 1){
+    if(this.filesToUpload && this.filesToUpload.length <= 1){
       //les funcions que venen del resultat de una promesa com es makeFileRequest, s'han d'encadenar
       //de la funció then() que dins inclou 2 funcions callback result i error.
       this._productoService.makeFileRequest(GLOBAL.url+'upload-file',[],this.filesToUpload).then(
@@ -48,7 +50,7 @@ export class ProductoAddComponent{
           //guarda el nom del fitxer en la variable imatge del producte
           this.producto.imagen = this.resultUpload.filename;
           console.log("resultupload dins if",this.resultUpload.filename);
-          //this.saveProducto();
+          this.saveProducto();
         },
         (error) =>{
           console.log(error);
@@ -77,6 +79,7 @@ export class ProductoAddComponent{
     );
   }
 
+  //catura els fitxers a pujar
   fileChangeEvent(fileInput:any){
     this.filesToUpload = <Array<File>>fileInput.target.files;
 

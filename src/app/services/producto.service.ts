@@ -32,7 +32,7 @@ export class ProductoService{
   }
 
   addProducto(producto:Producto): Observable<any>{
-    //convertix l'objecte que reb del form en json
+    //convertix l'objecte que reb del form en js a json
     let json = JSON.stringify(producto);
     //parametre on posarem el json per a enviar-lo al servidor en la petició ajax
     let params ='json='+json;
@@ -41,6 +41,15 @@ export class ProductoService{
 
     //petició al servidor
     return this._http.post(this.url+'producto', params, {headers:headers});
+  }
+
+  editProducto(id, producto:Producto): Observable<any>{
+    let json =JSON.stringify(producto);
+    let params = "json="+json;
+    let headers = new HttpHeaders({'Content-Type':'application/x-www-form-urlencoded'});
+
+    return this._http.post(this.url+'update-producto/'+id, params, {headers:headers});
+
   }
 
   //subir fichero

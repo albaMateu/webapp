@@ -15,7 +15,7 @@ export class ProductoDetailComponent{
     public producto: Producto;
 
     constructor(
-      private _prductoService: ProductoService,
+      private _productoService: ProductoService,
       private _route: ActivatedRoute,
       private _router: Router
     ){
@@ -33,7 +33,7 @@ export class ProductoDetailComponent{
         let id = params['id'];
 
         //LLAMAMOS AL SERVICIO
-        this._prductoService.getProducto(id).subscribe(
+        this._productoService.getProducto(id).subscribe(
           response =>{
             if(response.code == 200){
               this.producto= response.data; //la respuesta del servicio

@@ -1,3 +1,4 @@
+import { ProductoEditComponent } from './components/producto-edit.component';
 import { ProductoDetailComponent } from './components/producto-detail.component';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home.component';
@@ -23,7 +24,8 @@ import { routing, appRoutingProviders } from './app.routing';
     ErrorComponent,
     ProductosListComponent,
     ProductoAddComponent,
-    ProductoDetailComponent
+    ProductoDetailComponent,
+    ProductoEditComponent
   ],
   imports: [
     BrowserModule,
