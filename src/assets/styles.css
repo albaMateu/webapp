@@ -101,3 +101,8 @@
   width: 100%;
   height: 200px;
 }
+
+#botonera a{
+  white-space: pre-line; /*hace que el texto del boton se adapte al boton bajando de linia si es necesario*/
+  font-size: 100%;
+}
