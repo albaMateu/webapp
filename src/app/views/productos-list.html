@@ -8,7 +8,7 @@
 <div *ngIf="productos">
   <div class="row">
     <div class="col-lg-3 col-xs-6 col-md-4" *ngFor="let producto of productos">
-      <div class="thumbnail">
+      <div class="thumbnail" [ngClass]="{transp:confirmado == producto.id}">
 
         <div *ngIf="producto.imagen" class="imagen_container">
           <img src="http://localhost/curso-angular4-backend/uploads/{{producto.imagen}}" class="producto_imagen" alt="{{producto.nombre}}"/>
@@ -25,9 +25,13 @@
             <a [routerLink]="['/editar-producto', producto.id]" class="btn btn-md btn-warning">Editar</a>
             <a (click)="borrarConfirm(producto.id)" class="btn btn-md btn-danger">Borrar</a>
           </div>
-          <div *ngIf="confirmado == producto.id" class="btn-group btn-group-justified">
-            <a  (click)="onDeleteProducto(producto.id)"  class="btn btn-danger" >Eliminar</a>
-            <a (click)="cancelarConfirm()"  class="btn btn-warning">Cancelar</a>
+          <div *ngIf="confirmado == producto.id">
+            <p >¿Estás seguro de que quieres eliminar este producto?</p>
+            <div class="btn-group btn-group-justified">
+              <a  (click)="onDeleteProducto(producto.id)"  class="btn btn-danger" >Eliminar</a>
+              <a (click)="cancelarConfirm()"  class="btn btn-warning">Cancelar</a>
+            </div>
+
           </div>
         </div>
 

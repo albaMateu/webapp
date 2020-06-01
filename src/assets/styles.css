@@ -106,3 +106,10 @@
   white-space: pre-line; /*hace que el texto del boton se adapte al boton bajando de linia si es necesario*/
   font-size: 100%;
 }
+
+.transp{
+  white-space: normal;
+  background-color: lightpink;
+  opacity: 1;
+  z-index: 999;
+}

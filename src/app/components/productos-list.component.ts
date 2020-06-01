@@ -49,6 +49,7 @@ export class ProductosListComponent{
 
   borrarConfirm(id){
     this.confirmado=id;
+    //$(".caption").addClass(".transp");
 
   }
   cancelarConfirm(){
