@@ -37,7 +37,7 @@ export class ProductoService{
     //parametre on posarem el json per a enviar-lo al servidor en la petició ajax
     let params ='json='+json;
     //configuració de la capçalera per a una sol·licitud HTTP. Depen del backend
-    let headers = new HttpHeaders({'Content-Type':'application/x-www-form-urlencoded'});
+    let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
 
     //petició al servidor
     return this._http.post(this.url+'producto', params, {headers:headers});
@@ -46,7 +46,8 @@ export class ProductoService{
   editProducto(id, producto:Producto): Observable<any>{
     let json =JSON.stringify(producto);
     let params = "json="+json;
-    let headers = new HttpHeaders({'Content-Type':'application/x-www-form-urlencoded'});
+    let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
+
     //url del metodo de la api
     return this._http.post(this.url+'update-producto/'+id, params, {headers:headers});
 
